@@ -1,0 +1,384 @@
+{% load static %}
+{% load bootstrap4 %}
+{% load i18n %}
+
+
+<!DOCTYPE html>
+<html lang="ar">
+<head>
+<title>Course</title>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="description" content="Course Project">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" type="text/css" href="{% static 'styles/bootstrap4/bootstrap.min.css' %}">
+<link href="{% static 'plugins/fontawesome-free-5.0.1/css/fontawesome-all.css' %}" rel="stylesheet" type="text/css">
+<link rel="stylesheet" type="text/css" href="{% static 'plugins/OwlCarousel2-2.2.1/owl.carousel.css' %}">
+<link rel="stylesheet" type="text/css" href="{% static 'plugins/OwlCarousel2-2.2.1/owl.theme.default.css' %}">
+<link rel="stylesheet" type="text/css" href="{% static 'plugins/OwlCarousel2-2.2.1/animate.css' %}">
+<link rel="stylesheet" type="text/css" href="{% static 'styles/main_styles.css' %}" id="maincss">
+<link rel="stylesheet" type="text/css" href="{% static 'styles/responsive.css' %}">
+<style>
+    
+    
+    
+    
+    /* .dropdown {
+      float: left;
+      overflow: hidden;
+    } */
+    
+    .dropdown .dropbtn {
+      cursor: pointer;
+      font-size: 16px;  
+      border: none;
+      outline: none;
+      color: rgb(76, 70, 70);
+      padding: 14px 16px;
+      background-color: inherit;
+      font-family: inherit;
+      margin: 0;
+    }
+    
+    .navbar a:hover, .dropdown:hover .dropbtn, .dropbtn:focus {
+      background-color: #FFB606;
+    }
+    
+    .dropdown-content {
+      display: none;
+      position: absolute;
+      background-color: #f9f9f9;
+      min-width: 160px;
+      box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+      z-index: 1;
+    }
+    
+    .dropdown-content a {
+      float: none;
+      color: black;
+      padding: 12px 16px;
+      text-decoration: none;
+      display: block;
+      text-align: left;
+    }
+    
+    .dropdown-content a:hover {
+      background-color: #ddd;
+    }
+    
+    .show {
+      display: block;
+    }
+
+	.text-right{
+		text-align: right;
+	}
+
+    </style>
+{% block href %}
+
+{% endblock %}
+
+</head>
+<body>
+
+<div class="super_container">
+
+	<!-- Header -->
+
+	<header class="header d-flex flex-row">
+		<div class="header_content d-flex flex-row align-items-center">
+			<!-- Logo -->
+			<div class="logo_container">
+				<div class="logo">
+					<img src="{% static 'images/logo.png' %}" alt="">
+					<span>كـورسـات</span>
+				</div>
+			</div>
+
+			<!-- Main Navigation -->
+			<nav class="main_nav_container">
+				<div class="main_nav">
+					<ul class="main_nav_list" >
+						<li  class="main_nav_item" ><a style="font-size: larger;" href="{% url 'index' %}">الرئيسة</a></li>
+
+						<li class="main_nav_item" ><a style="font-size: larger;" href="{% url 'cindex' %}">الكورسات</a></li>
+						<li class="main_nav_item" ><a style="font-size: larger;" href="contact.html">تواصل معنا</a></li>
+                        <li class="main_nav_item" ><a style="font-size: larger;" href="{% url 'latest_news' %}">اخر الاحداث</a></li>
+                        
+                        <li class="main_nav_item">
+                          <div class="navbar">
+                            <div class="dropdown">
+                            <button class="dropbtn" onclick="myFunction()" style="font-size: larger;">
+                                الحساب <i class="fas fa-bars trans_200"></i>
+                            </button>
+                            <div class="dropdown-content" id="myDropdown">
+                                {% if request.user.is_authenticated %}
+                                    {% if request.user.is_superuser %}
+                                        <a href="{% url 'admin:login' %}" style="font-size: larger;">ادارة البيانات</a>
+                                        <a href="{% url 'admin:login' %}" style="font-size: larger;">ادارة الموقع</a>
+                                    {% endif %}
+                                
+                              
+                              <a  href="{% url 'accounts:change_profile' %}" style="font-size: larger;">تعديل البروفايل</a>
+                              <a href="{% url 'accounts:change_password' %}" style="font-size: larger;">تغيير كلمة المرور</a>
+                              <a  href="{% url 'accounts:change_email' %}" style="font-size: larger;">تغيير الايميل</a>
+                              <form id="my_form" method="post" action="{% url 'accounts:log_out' %}">
+                                {% csrf_token %}
+                                <a href="javascript:{}" onclick="document.getElementById('my_form').submit();">تسجيل الخروج</a>
+                            </form>
+                              {% else %}
+                                        <a  href="{% url 'accounts:log_in' %}" style="font-size: larger;">تسجيل الدخول</a>
+                                        <a  href="{% url 'accounts:sign_up' %}" style="font-size: larger;">انشاء حساب</a>
+                                {% endif %}
+                            </div>
+                            </div> 
+                          </div>
+                        </li>
+
+
+						
+                				
+					</ul>
+				</div>
+			</nav>
+		</div>
+		<div class="header_side d-flex flex-row justify-content-center align-items-center">
+			<img src="{% static 'images/phone-call.svg' %}" alt="">
+			<span>+43 4566 7788 2457</span>
+		</div>
+
+		<!-- Hamburger -->
+		<div class="hamburger_container">
+			<i class="fas fa-bars trans_200"></i>
+		</div>
+
+	</header>
+	
+	<!-- Menu -->
+	<div class="menu_container menu_mm">
+
+		<!-- Menu Close Button -->
+		<div class="menu_close_container">
+			<div class="menu_close"></div>
+		</div>
+        
+		<!-- Menu Items -->
+		<div class="menu_inner menu_mm">
+			<div class="menu menu_mm">
+				<ul class="menu_list menu_mm">
+					<li class="menu_item menu_mm"><a href="{% url 'index' %}">الرئيسة</a></li>
+					<li class="menu_item menu_mm"><a href="{% url 'cindex' %}">الكورسات</a></li>
+					<li class="menu_item menu_mm"><a href="contact.html">تواصل معنا</a></li>
+                    <li class="menu_item menu_mm"><a href="{% url 'latest_news' %}">اخر الاحداث</a></li>
+
+                    {% if request.user.is_authenticated %}
+                        {% if request.user.is_superuser %}
+                        <li class="menu_item menu_mm"><a href="{% url 'admin:login' %}" >ادارة البيانات</a></li>
+                        <li class="menu_item menu_mm"><a href="{% url 'admin:login' %}" >ادارة الموقع</a></li>
+                        {% endif %}
+                    <li class="menu_item menu_mm"><a  href="{% url 'accounts:change_profile' %}" >تعديل البروفايل</a></li>
+                    <li class="menu_item menu_mm"><a href="{% url 'accounts:change_password' %}" >تغيير كلمة المرور</a></li>
+                    <li class="menu_item menu_mm"><a  href="{% url 'accounts:change_email' %}" >تغيير الايميل</a></li>
+                    <li class="menu_item menu_mm">
+                        <form id="my_form" method="post" action="{% url 'accounts:log_out' %}">
+                            {% csrf_token %}
+                            <a href="javascript:{}" onclick="document.getElementById('my_form').submit();">تسجيل الخروج</a>
+                        </form>
+                        {% else %}
+                        <li class="menu_item menu_mm"> <a  href="{% url 'accounts:log_in' %}" >تسجيل الدخول</a></li>
+                        <li class="menu_item menu_mm"><a  href="{% url 'accounts:sign_up' %}" >انشاء حساب</a></li>
+                        {% endif %}
+                    </li>
+				</ul>
+
+				<!-- Menu Social -->
+				
+				<div class="menu_social_container menu_mm">
+					<ul class="menu_social menu_mm">
+						<li class="menu_social_item menu_mm"><a href="#"><i class="fab fa-pinterest"></i></a></li>
+						<li class="menu_social_item menu_mm"><a href="#"><i class="fab fa-linkedin-in"></i></a></li>
+						<li class="menu_social_item menu_mm"><a href="#"><i class="fab fa-instagram"></i></a></li>
+						<li class="menu_social_item menu_mm"><a href="#"><i class="fab fa-facebook-f"></i></a></li>
+						<li class="menu_social_item menu_mm"><a href="#"><i class="fab fa-twitter"></i></a></li>
+					</ul>
+				</div>
+
+				<div class="menu_copyright menu_mm">Colorlib All rights reserved</div>
+			</div>
+
+		</div>
+
+	</div>
+	
+	{% block content %}
+    {% endblock %}
+
+	<!-- Footer -->
+
+	<footer class="footer">
+		<div class="container">
+			
+			<!-- Newsletter -->
+
+			<div class="newsletter">
+				<div class="row">
+					<div class="col">
+						<div class="section_title text-center">
+							<h1>Subscribe to newsletter</h1>
+						</div>
+					</div>
+				</div>
+
+				<div class="row">
+					<div class="col text-center">
+						<div class="newsletter_form_container mx-auto">
+							<form action="post">
+								<div class="newsletter_form d-flex flex-md-row flex-column flex-xs-column align-items-center justify-content-center">
+									<input id="newsletter_email" class="newsletter_email" type="email" placeholder="Email Address" required="required" data-error="Valid email is required.">
+									<button id="newsletter_submit" type="submit" class="newsletter_submit_btn trans_300" value="Submit">Subscribe</button>
+								</div>
+							</form>
+						</div>
+					</div>
+				</div>
+
+			</div>
+
+			<!-- Footer Content -->
+
+			<div class="footer_content">
+				<div class="row">
+
+					<!-- Footer Column - About -->
+					<div class="col-lg-3 footer_col">
+
+						<!-- Logo -->
+						<div class="logo_container">
+							<div class="logo">
+								<img src="{% static 'images/logo.png' %}" alt="">
+								<span>كـورسـات</span>
+							</div>
+						</div>
+
+						<p class="text-right footer_about_text">الموقع يتضمن العديد من الكورسات التي يمكنك الانضمام لها, ويمكنك ايضا الانضمام معنا  كمدرب</p>
+
+					</div>
+
+					<!-- Footer Column - Menu -->
+
+					<div class="col-lg-3 footer_col">
+						<div class="footer_column_title">Menu</div>
+						<div class="footer_column_content">
+							<ul>
+								<li class="footer_list_item"><a href="#">Home</a></li>
+								<li class="footer_list_item"><a href="#">About Us</a></li>
+								<li class="footer_list_item"><a href="courses.html">Courses</a></li>
+								<li class="footer_list_item"><a href="news.html">News</a></li>
+								<li class="footer_list_item"><a href="contact.html">Contact</a></li>
+							</ul>
+						</div>
+					</div>
+
+					<!-- Footer Column - Usefull Links -->
+
+					<div class="col-lg-3 footer_col">
+						<div class="footer_column_title">Usefull Links</div>
+						<div class="footer_column_content">
+							<ul>
+								<li class="footer_list_item"><a href="#">Testimonials</a></li>
+								<li class="footer_list_item"><a href="#">FAQ</a></li>
+								<li class="footer_list_item"><a href="#">Community</a></li>
+								<li class="footer_list_item"><a href="#">Campus Pictures</a></li>
+								<li class="footer_list_item"><a href="#">Tuitions</a></li>
+							</ul>
+						</div>
+					</div>
+
+					
+
+					<!-- Footer Column - Contact -->
+
+					<div class="col-lg-3 footer_col">
+						<div class="footer_column_title">Contact</div>
+						<div class="footer_column_content">
+							<ul>
+								<li class="footer_contact_item">
+									<div class="footer_contact_icon">
+										<img src="{% static 'images/placeholder.svg' %}">
+									</div>
+									العراق, بغداد, شارع الربيعي
+								</li>
+								<li class="footer_contact_item">
+									<div class="footer_contact_icon">
+										<img src="{% static 'images/smartphone.svg' %}" alt="https://www.flaticon.com/authors/lucy-g">
+									</div>
+									+964 782 701 9484
+								</li>
+								<li class="footer_contact_item">
+									<div class="footer_contact_icon">
+										<img src="{% static 'images/envelope.svg' %}" alt="https://www.flaticon.com/authors/lucy-g">
+									</div>devmohamd@gmail.com
+								</li>
+							</ul>
+						</div>
+					</div>
+
+				</div>
+			</div>
+
+			<!-- Footer Copyright -->
+
+			<div class="footer_bar d-flex flex-column flex-sm-row align-items-center">
+				<div class="footer_copyright">
+					<span><!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
+<script>document.write(new Date().getFullYear());</script>  | This website is made with <i class="fa fa-heart" aria-hidden="true"></i> by <a href="https://devmohamd.pythonanywhere.com" target="_blank">DEV. Mohammed Bashar</a>
+<!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. --></span>
+				</div>
+				<div class="footer_social ml-sm-auto">
+					<ul class="menu_social">
+						<li class="menu_social_item"><a href="#"><i class="fab fa-pinterest"></i></a></li>
+						<li class="menu_social_item"><a href="#"><i class="fab fa-linkedin-in"></i></a></li>
+						<li class="menu_social_item"><a href="#"><i class="fab fa-instagram"></i></a></li>
+						<li class="menu_social_item"><a href="#"><i class="fab fa-facebook-f"></i></a></li>
+						<li class="menu_social_item"><a href="#"><i class="fab fa-twitter"></i></a></li>
+					</ul>
+				</div>
+			</div>
+
+		</div>
+	</footer>
+
+</div>
+
+<script src="{% static 'js/jquery-3.2.1.min.js' %}"></script>
+<script src="{% static 'styles/bootstrap4/popper.js' %}"></script>
+<script src="{% static 'styles/bootstrap4/bootstrap.min.js' %}"></script>
+<script src="{% static 'plugins/greensock/TweenMax.min.js' %}"></script>
+<script src="{% static 'plugins/greensock/TimelineMax.min.js' %}"></script>
+<script src="{% static 'plugins/scrollmagic/ScrollMagic.min.js' %}"></script>
+<script src="{% static 'plugins/greensock/animation.gsap.min.js' %}"></script>
+<script src="{% static 'plugins/greensock/ScrollToPlugin.min.js' %}"></script>
+<script src="{% static 'plugins/OwlCarousel2-2.2.1/owl.carousel.js' %}"></script>
+<script src="{% static 'plugins/scrollTo/jquery.scrollTo.min.js' %}"></script>
+<script src="{% static 'plugins/easing/easing.js' %}"></script>
+<script src="{% static 'js/custom.js' %}"></script>
+<script>
+    /* When the user clicks on the button, 
+    toggle between hiding and showing the dropdown content */
+    function myFunction() {
+      document.getElementById("myDropdown").classList.toggle("show");
+    }
+    
+    // Close the dropdown if the user clicks outside of it
+    window.onclick = function(e) {
+      if (!e.target.matches('.dropbtn')) {
+      var myDropdown = document.getElementById("myDropdown");
+        if (myDropdown.classList.contains('show')) {
+          myDropdown.classList.remove('show');
+        }
+      }
+    }
+    </script>
+</body>
+</html>

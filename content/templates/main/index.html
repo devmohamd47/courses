@@ -1,0 +1,387 @@
+{% extends 'layouts/default/page.html' %}
+{% load static %}
+{% load i18n %}
+
+{% block content %}
+
+
+
+
+<div class="home">
+
+    <!-- Hero Slider -->
+    <div class="hero_slider_container">
+        <div class="hero_slider owl-carousel">
+            
+            <!-- Hero Slide -->
+            <div class="hero_slide">
+                <div class="hero_slide_background" style="background-image:url({% static 'images/slider_background.jpg' %})"></div>
+                <div class="hero_slide_container d-flex flex-column align-items-center justify-content-center">
+                    <div class="hero_slide_content text-center">
+                        <h1 data-animation-in="fadeInUp" data-animation-out="animate-out fadeOut">
+                            !
+                            طور
+                            <span>مهاراتك</span>
+                        </h1>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Hero Slide -->
+            <div class="hero_slide">
+                <div class="hero_slide_background" style="background-image:url({% static 'images/slider_background.jpg' %})"></div>
+                <div class="hero_slide_container d-flex flex-column align-items-center justify-content-center">
+                    <div class="hero_slide_content text-center">
+                        <h1 data-animation-in="fadeInUp" data-animation-out="animate-out fadeOut">!احصل على افضل <span>الكورسات</span> الان</h1>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Hero Slide -->
+            <div class="hero_slide">
+                <div class="hero_slide_background" style="background-image:url({% static 'images/slider_background.jpg' %})"></div>
+                <div class="hero_slide_container d-flex flex-column align-items-center justify-content-center">
+                    <div class="hero_slide_content text-center">
+                        <h1 data-animation-in="fadeInUp" data-animation-out="animate-out fadeOut">
+                            !
+                            انضم
+                            <span>معنا</span>
+                            
+                        </h1>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+        <div class="hero_slider_left hero_slider_nav trans_200"><span class="trans_200">prev</span></div>
+        <div class="hero_slider_right hero_slider_nav trans_200"><span class="trans_200">next</span></div>
+    </div>
+
+</div>
+
+<div class="hero_boxes">
+    <div class="hero_boxes_inner">
+        <div class="container">
+            <div class="row">
+
+                <div class="col-lg-4 hero_box_col">
+                    <a href="{% url 'cindex' %}" class="hero_box_link">
+                        <div class="hero_box d-flex flex-row align-items-center justify-content-start">
+                            <img src="{% static 'images/earth-globe.svg' %}" class="svg" alt="">
+                            <div class="hero_box_content">
+                                <h2 class="text-right hero_box_title">الكورسات المتاحة</h2>
+                                <span class="text-right hero_box_link">اضغط هنا</span>
+                            </div>
+                        </div>
+                    </a>
+                </div>
+                
+                <div class="col-lg-4 hero_box_col">
+                    <a href="{% url 'latest_news' %}" class="hero_box_link">
+                        <div class="hero_box d-flex flex-row align-items-center justify-content-start">
+                            <img src="{% static 'images/news.svg' %}" class="svg" alt="">
+                            <div class="hero_box_content">
+                                <h2 class="text-right hero_box_title">اخر الاحداث</h2>
+                                <span class="hero_box_link">اضغط هنا</span>
+                            </div>
+                        </div>
+                    </a>
+                </div>
+                
+                <div class="col-lg-4 hero_box_col">
+                    <a href="{% url 'join_as_lect' %}" class="hero_box_link">
+                        <div class="hero_box d-flex flex-row align-items-center justify-content-start">
+                            <img src="{% static 'images/professor.svg' %}" class="svg" alt="">
+                            <div class="hero_box_content">
+                                <h2 class="text-right hero_box_title">انضم كمدرب</h2>
+                                <span class="hero_box_link">اضغط هنا</span>
+                            </div>
+                        </div>
+                    </a>
+                </div>                   
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+
+
+<div class="popular page_section">
+    <div class="container">
+        <div class="row">
+            <div class="col">
+                <div class="section_title text-center">
+                    <h1>الكورسات الشائعة</h1>
+                </div>
+            </div>
+        </div>
+
+        <div class="row course_boxes">
+            
+
+            {% for c in courses %}
+
+            <!-- Popular Course Item -->
+            <div class="col-lg-4 course_box">
+                <div class="card">
+                    <img class="card-img-top" src="{% static 'images/course_1.jpg' %}" alt="https://unsplash.com/@kellybrito">
+                    <div class="card-body text-center">
+                        <div class="card-title"><a href="{% url 'cdetails' %}?cid={{c.cid}}">{{c.name}}</a></div>
+                        <div class="card-text">{{c.description}}</div>
+                    </div>
+                    <div class="price_box d-flex flex-row align-items-center">
+                        <div class="">
+                            {% if c.trainerGender == 'M' %}
+                            <img width="55" height="55" src="{% static 'images/male.png' %}">
+                            {% else %}
+                            <img width="55" height="55" src="{% static 'images/female.png' %}">
+                            {% endif %}
+                        </div>
+                        <div class="course_author_name">{{c.trainer}}, <span>{{c.trainerDescription}}</span></div>
+                        <div class="course_price d-flex flex-column align-items-center justify-content-center"><span>{{c.price}}$</span></div>
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+            
+
+            
+            
+        </div>
+    </div>		
+</div>
+
+
+
+
+<div class="register">
+
+    <div class="container-fluid">
+        
+        <div class="row row-eq-height">
+            <div class="col-lg-6 nopadding">
+                
+                <!-- Register -->
+
+                <div class="text-right register_section d-flex flex-column align-items-center justify-content-center">
+                    <div class="register_content text-center">
+                        <h1 class="register_title">سجل في كورساتنا مع خصومات تصل الى <br> <span>50%</span> <br> هذا العرض لفترة محدودة</h1>
+                        <p class="register_text">يوفر الموقع فرصًا مثيرة ومتنوعة للمشتركين للاستفادة من الكورسات المتاحة. سواء كنت تبحث عن تعلم مهارات جديدة أو تطوير معرفتك في مجال محدد، يمكنك الانضمام إلى أي كورس من العروض المقدمة. <br><br> تشمل هذه الكورسات مجموعة واسعة من المواضيع بما في ذلك التسويق الرقمي، إدارة المشاريع، تطوير الويب، التصميم الجرافيكي، اللغات البرمجية، وغيرها الكثير.
+
+                            باستخدام الموقع، يمكنك الاطلاع على الكورسات المتاحة والتحقق من المحتوى الذي ستتعلمه والمهارات التي ستكتسبها. ستجد أيضًا معلومات حول مدة الكورس وطرق التسليم، سواء كانت تعليمًا ذاتيًا أو بمساعدة مدرب. <br><br>
+                            
+                            بالإضافة إلى الانضمام كمتعلم، يتيح الموقع أيضًا الفرصة للأشخاص المتميزين والمؤهلين أن يصبحوا مدربين على المنصة. إذا كنت تمتلك خبرة ومعرفة في مجال محدد وتحب مشاركة معلوماتك وتدريب الآخرين، يمكنك التقدم لتكون مدربًا على الموقع. سيتمكن المشتركون من الاستفادة من خبرتك وتوجيههم في رحلتهم التعليمية. <br><br>
+                            
+                            للانضمام كمدرب، قد يتطلب الأمر تقديم طلب وتقديم بعض المعلومات الشخصية والمهنية حول خلفيتك وخبرتك التدريبية. يمكن أن يكون هذا الدور ممتعًا ومجزيًا حيث ستتمكن من بناء سمعة كمدرب محترف ومشاركة معرفتك مع جمهور واسع من المتعلمين.</p>
+                        <div class="button button_1 register_button mx-auto trans_200"><a href="#">register now</a></div>
+                    </div>
+                </div>
+
+            </div>
+
+            <div class="col-lg-6 nopadding">
+                
+                <!-- Search -->
+
+                <div class="text-right search_section d-flex flex-column align-items-center justify-content-center">
+                    <div class="search_background" style="background-image:url({% static 'images/search_background.jpg' %});"></div>
+                    <div class="search_content text-center">
+                        <h1 class="search_title">ابحث عن كورس عن طريق احد الطرق التالية</h1>
+                        <form id="search_form" class="search_form" method="post" action="">
+                            {% csrf_token %}
+                            <input name="name" id="search_form_name" class="text-right input_field search_form_field" type="text" placeholder="أسم الكورس" required="required" data-error="Course name is required." oninput="handleInputChange(this)">
+                            <input name="Tname" id="search_form_category" class="text-right input_field search_form_field" type="text" placeholder="أسم المدرب" oninput="handleInputChange(this)">
+                            <div style="padding: 10px;"></div>
+                            <select placeholder="نوعه" name="type" id="search_form_degree" class="text-right input_field search_form_field" onchange="handleInputChange2(this)">
+                              <option value="">نوع الكورس</option>
+                              <option value="1">حضوري</option>
+                              <option value="2">الكتروني</option>
+                            </select>
+                            <button id="search_submit_button" type="submit" class="search_submit_button trans_200" value="Submit">أبحث</button>
+                          </form>
+                          
+                    </div> 
+                </div>
+
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+<script>
+    var originalHTML = document.getElementById('search_form').innerHTML;
+    var fields = document.getElementsByClassName('search_form_field');
+    var submitButton = document.getElementById('search_submit_button');
+    
+    function handleInputChange(selectedField) {
+        var selectedPlaceholder = selectedField.placeholder;
+        var hasInput = false;
+        
+        for (var i = 0; i < fields.length; i++) {
+            var field = fields[i];
+            
+            if (field === selectedField) {
+                field.style.display = 'block';
+                hasInput = field.value.trim() !== '';
+                field.required = hasInput;
+            } else {
+                field.style.display = 'none';
+                field.required = false;
+                field.name = ''
+            }
+        }
+        
+        if (hasInput) {
+            submitButton.innerHTML = "أبحث عن طريق " + selectedPlaceholder;
+        } else {
+            submitButton.innerHTML = "أبحث";
+        }
+    }
+
+
+    function handleInputChange2(selectedField) {
+    var selectedOption = selectedField.options[selectedField.selectedIndex];
+    var selectedPlaceholder = selectedOption.textContent;
+    var hasInput = false;
+
+    for (var i = 0; i < fields.length; i++) {
+      var field = fields[i];
+
+      if (field === selectedField) {
+        field.style.display = 'block';
+        hasInput = field.value.trim() !== '';
+        field.required = hasInput;
+      } else {
+        field.style.display = 'none';
+        field.required = false;
+        field.name = '';
+      }
+    }
+
+    if (hasInput) {
+      submitButton.innerHTML = "أبحث عن جميع الكورسات ال" + selectedPlaceholder + "ة";
+    } else {
+      submitButton.innerHTML = "أبحث";
+    }
+  }
+    
+    function resetForm() {
+        for (var i = 0; i < fields.length; i++) {
+            var field = fields[i];
+            field.style.display = 'block';
+            field.value = '';
+        }
+        
+        submitButton.innerHTML = "Search Course";
+    }
+    
+    for (var i = 0; i < fields.length; i++) {
+        fields[i].addEventListener('input', function() {
+            if (this.value.trim() === '') {
+                resetForm();
+            }
+        });
+    }
+</script>
+
+
+
+
+<style>
+    .ltr{
+        align-self: end;
+        direction: rtl;
+        text-align: right;
+    }
+</style>
+
+
+
+<!-- Services -->
+
+<div class="services page_section">
+		
+    <div class="container">
+        <div class="row">
+            <div class="col">
+                <div class="section_title text-center">
+                    <h1>خدماتنا</h1>
+                </div>
+            </div>
+        </div>
+
+        <div class="row services_row">
+
+            <div class="col-lg-4 service_item text-left d-flex flex-column align-items-start justify-content-start">
+                <div class="ltr icon_container d-flex flex-column justify-content-end">
+                    <img src="{% static 'images/earth-globe.svg' %}" alt="">
+                </div>
+                <h3 class="ltr">كورسات اونلاين</h3>
+                <p class="ltr">يوجد العديد من الكورسات التي يمكن الانضمام إليها بشكل إلكتروني عبر الموقع. هذا يعني أنه يمكن للأشخاص الوصول إلى المحتوى التعليمي والمواد الدراسية بسهولة ومرونة من أي مكان وفي أي وقت يناسبهم.</p>
+            </div>
+
+            <div class="col-lg-4 service_item text-left d-flex flex-column align-items-start justify-content-start">
+                <div class="ltr icon_container d-flex flex-column justify-content-end">
+                    <img src="{% static 'images/exam.svg' %}" alt="">
+                </div>
+                <h3 class="ltr">كورسات حضورية</h3>
+                <p class="ltr">يوجد العديد من الكورسات التي يمكن الانضمام إليها بشكل حضوري على الموقع. إذا كنت تفضل التعلم والتفاعل مباشرة مع المدرب والمشاركين الآخرين، فإن الكورسات التي تتطلب الحضور الشخصي توفر لك تجربة تعليمية مختلفة ومثيرة.</p>
+            </div>
+
+            <div class="col-lg-4 service_item text-left d-flex flex-column align-items-start justify-content-start">
+                <div class="ltr icon_container d-flex flex-column justify-content-end">
+                    <img src="{% static 'images/books.svg' %}" alt="">
+                </div>
+                <h3 class="ltr">افضل المناهج</h3>
+                <p class="ltr">يتم اتباع أفضل المناهج ضمن الكورسات لضمان تقديم تجربة تعليمية مميزة وفعالة للمشتركين. يتطلب ذلك اختيار وتنفيذ المناهج التعليمية التي تعتمد على مبادئ وأسس قوية في تصميمها وتنفيذها.</p>
+            </div>
+
+            <div class="col-lg-4 service_item text-left d-flex flex-column align-items-start justify-content-start">
+                <div class="ltr icon_container d-flex flex-column justify-content-end">
+                    <img src="{% static 'images/professor.svg' %}" alt="">
+                </div>
+                <h3 class="ltr">مدربين خبراء</h3>
+                <p class="ltr">أننا نقدم لك فرصة التعلم من المتخصصين والخبراء في مجالاتهم. يتم اختيار المدربين بعناية لضمان أنهم يتمتعون بالمعرفة العميقة والخبرة العملية في مجالاتهم المختصة.</p>
+            </div>
+
+            <div class="col-lg-4 service_item text-left d-flex flex-column align-items-start justify-content-start">
+                <div class="ltr icon_container d-flex flex-column justify-content-end">
+                    <img src="{% static 'images/blackboard.svg' %}" alt="">
+                </div>
+                <h3 class="ltr">أفضل الكورسات</h3>
+                <p>نختار بعناية أفضل الكورسات التعليمية بناءً على معايير الجودة والشمولية، وتوافقها مع المستوى والاحتياجات. نأخذ في الاعتبار التقييمات والمراجعات للكورسات لضمان فاعلية التعلم وتحقيق الأهداف المرجوة.</p>
+            </div>
+
+            <div class="col-lg-4 service_item text-left d-flex flex-column align-items-start justify-content-start">
+                <div class="ltr icon_container d-flex flex-column justify-content-end">
+                    <img src="{% static 'images/mortarboard.svg' %}" alt="">
+                </div>
+                <h3 class="ltr">تأهيل الخريجين</h3>
+                <p class="ltr">نحن نوفر فرص تأهيل الخريجين بهدف تعزيز فرصهم في سوق العمل وتطوير مهاراتهم اللازمة للنجاح في حياتهم المهنية. يتم تصميم برامج التأهيل لتوفير المعرفة والمهارات العملية التي يحتاجها الخريجون في سوق العمل الحديث.</p>
+            </div>
+
+        </div>
+    </div>
+</div>
+
+
+
+
+
+    <!-- {% if request.user.is_authenticated %}
+
+        {% trans 'Your username is' %} <b>{{ request.user.username }}</b>.
+
+    {% else %}
+
+        {% trans 'You are a guest.' %}
+
+    {% endif %} -->
+
+{% endblock %}

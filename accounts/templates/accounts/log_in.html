@@ -1,0 +1,51 @@
+{% extends 'layouts/default/page.html' %}
+
+{% load bootstrap4 %}
+{% load i18n %}
+{% load static %}
+
+{% block href %}
+<link rel="stylesheet" type="text/css" href="{% static 'styles/news_post_styles.css' %}">
+<link rel="stylesheet" type="text/css" href="{% static 'styles/news_post_responsive.css' %}">
+{% endblock %}
+
+{% block content %}
+<div class="home">
+    <div class="home_background_container prlx_parent">
+        <div class="home_background prlx" style="background-image:url({% static 'images/news_background.jpg' %})"></div>
+    </div>
+    <div class="home_content">
+        <h1>تسجيل الدخول</h1>
+    </div>
+</div>
+
+<div class="news">
+    <div class="container">
+        <h4>ادخل المعلومات التالية</h4>
+
+    <form method="post">
+
+        {% csrf_token %}
+        {% bootstrap_form form %}
+
+        <button class="btn btn-primary">{% trans 'Log in' %}</button>
+
+    </form>
+
+    <hr>
+
+    <ul>
+        <li>
+            <a href="{% url 'accounts:restore_password' %}">{% trans 'Forgot your password?' %}</a>
+        </li>
+        <li>
+            <a href="{% url 'accounts:remind_username' %}">{% trans 'Forgot your username?' %}</a>
+        </li>
+        <li>
+            <a href="{% url 'accounts:resend_activation_code' %}">{% trans 'Resend an activation code' %}</a>
+        </li>
+    </ul>
+
+</div></div>
+
+{% endblock %}

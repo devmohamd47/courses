@@ -1,0 +1,64 @@
+{% extends 'layouts/default/page.html' %}
+{% load static %}
+{% load i18n %}
+
+{% block href %}
+<link rel="stylesheet" type="text/css" href="{% static 'styles/courses_styles.css' %}">
+<link rel="stylesheet" type="text/css" href="{% static 'styles/courses_responsive.css' %}">
+{% endblock %}
+
+{% block content %}
+
+<div class="home">
+    <div class="home_background_container prlx_parent">
+        <div class="home_background prlx" style="background-image:url({% static 'images/courses_background.jpg' %})"></div>
+    </div>
+    <div class="home_content">
+        <h1>الكورسات</h1>
+    </div>
+</div>
+
+<!-- Popular -->
+
+<div class="popular page_section">
+    <div class="container">
+        <div class="row">
+            <div class="col">
+                <div class="section_title text-center">
+                    <h1>Popular Courses</h1>
+                </div>
+            </div>
+        </div>
+
+        <div class="row course_boxes">
+            {% for c in courses %}
+            <!-- Popular Course Item -->
+            <div class="col-lg-4 course_box">
+                <div class="card">
+                    <img class="card-img-top" src="{% static 'images/course_1.jpg' %}" alt="https://unsplash.com/@kellybrito">
+                    <div class="card-body text-center">
+                        <div class="card-title"><a href="{% url 'cdetails' %}?cid={{c.cid}}">{{c.name}}</a></div>
+                        <div class="card-text">{{c.description}}</div>
+                    </div>
+                    <div class="price_box d-flex flex-row align-items-center">
+                        <div class="">
+                            {% if c.trainerGender == 'M' %}
+                            <img width="55" height="55" src="{% static 'images/male.png' %}">
+                            {% else %}
+                            <img width="55" height="55" src="{% static 'images/female.png' %}">
+                            {% endif %}
+                            
+                        </div>
+                        <div class="course_author_name">{{c.trainer}}, <span>{{c.trainerDescription}}</span></div>
+                        <div class="course_price d-flex flex-column align-items-center justify-content-center"><span>{{c.price}}$</span></div>
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+
+
+        </div>
+    </div>		
+</div>
+
+{% endblock %}

@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Under Development or Invalid URL</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f3f3f3;
+        }
+        
+        .container {
+            max-width: 600px;
+            margin: 0 auto;
+            padding: 50px;
+            text-align: center;
+            background-color: #ffffff;
+            border-radius: 5px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            margin-top: 100px;
+        }
+        
+        h1 {
+            font-size: 30px;
+            margin-bottom: 20px;
+            color: #333333;
+        }
+        
+        p {
+            font-size: 16px;
+            color: #666666;
+            margin-bottom: 30px;
+        }
+        
+        .logo {
+            width: 150px;
+            margin-bottom: 30px;
+        }
+        
+        .btn {
+            display: inline-block;
+            padding: 10px 20px;
+            background-color: #337ab7;
+            color: #ffffff;
+            text-decoration: none;
+            border-radius: 5px;
+            transition: background-color 0.3s ease;
+        }
+        
+        .btn:hover {
+            background-color: #23527c;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- <img src="path/to/your/logo.png" alt="Logo" class="logo"> -->
+        <svg xmlns="http://www.w3.org/2000/svg" width="80" height="80" viewBox="0 0 80 80">
+            <circle cx="40" cy="40" r="35" fill="#FCD34D" />
+            <text x="32" y="48" font-size="30" font-weight="bold" fill="#FFFFFF">:/</text>
+          </svg>
+        <h1>Sorry, this section is currently under development or invalid URL.</h1>
+        <p>We are working hard to bring you the best experience. Stay tuned for updates.</p>
+        <a href="{% url 'index' %}" class="btn">Go Back</a>
+    </div>
+</body>
+</html>
