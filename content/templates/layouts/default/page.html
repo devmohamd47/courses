@@ -302,7 +302,7 @@
 					
 					<li class="menu_item menu_mm"><a href="{% url 'index' %}">الرئيسة</a></li>
 					<li class="menu_item menu_mm"><a href="{% url 'cindex' %}">الكورسات</a></li>
-					<li class="menu_item menu_mm"><a href="contact.html">تواصل معنا</a></li>
+					<li class="menu_item menu_mm"><a href="{% url 'contact' %}">تواصل معنا</a></li>
                     <li class="menu_item menu_mm"><a href="{% url 'latest_news' %}">اخر الاحداث</a></li>
 
                     {% if request.user.is_authenticated %}
