@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import Course, TeachRequest, Post
+from .models import Course, TeachRequest, Post, MsgRequest
 
 # Register your models here.
 admin.site.register(Course)
@@ -15,3 +15,4 @@ class PostAdmin(admin.ModelAdmin):
         super().save_model(request, obj, form, change)
 
 admin.site.register(Post, PostAdmin)
+admin.site.register(MsgRequest)

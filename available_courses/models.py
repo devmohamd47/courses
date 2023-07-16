@@ -50,3 +50,11 @@ class Post(models.Model):
     creator = models.ForeignKey(User, on_delete=models.DO_NOTHING, null=True, blank=True)
  
     
+class MsgRequest(models.Model):
+    name = models.CharField(max_length=20)
+    phone_regex = RegexValidator(
+        regex=r'^\+?\d{9,15}$',  # Customize the regex pattern as per your phone number format
+        message="Phone number must be entered in the format: '+999999999'. Up to 15 digits allowed."
+    )
+    phone = models.CharField(max_length=15, validators=[phone_regex])
+    msg = models.CharField(max_length=2000)

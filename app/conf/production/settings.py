@@ -7,7 +7,7 @@ CONTENT_DIR = os.path.join(BASE_DIR, 'content')
 
 SECRET_KEY = '3d305kajG5Jy8KBafCMpHwDIsNi0SqVaW'
 
-DEBUG = False
+DEBUG = True
 ALLOWED_HOSTS = ['*']
 
 SITE_ID = 1

@@ -1,6 +1,6 @@
 from django.shortcuts import render
-from .models import Course, TeachRequest, Post
-from .forms import JoinAsLect
+from .models import Course, TeachRequest, Post, MsgRequest
+from .forms import JoinAsLect, SendMsg
 from django.core.paginator import Paginator
 from django.contrib import messages
 # Create your views here.
@@ -82,3 +82,24 @@ def news_post(request):
 
 def custom_page_not_found(request, exception):
     return render(request, '404.html', status=404)
+
+def contact(request):
+    form = SendMsg()
+    if request.method == "POST":
+        form = SendMsg(request.POST)
+        print(request.POST['name'], request.POST['phone'], request.POST['msg'])
+        print(form.errors)
+        if form.is_valid():
+           
+            pc = MsgRequest(
+                name = request.POST['name'],
+                phone = request.POST['phone'],
+                msg = request.POST['msg']
+            )
+             
+            pc.save()
+            messages.success(request, 'شكرا, تم تسجيل معلوماتك')
+        else:
+            messages.error(request, 'عذرا, يوجد خطأ في بياناتك!')
+            return render(request, "contact.html")
+    return render(request, 'contact.html')

@@ -12,16 +12,12 @@
 {% block content %}
 
 
-
-<!-- Home -->
-
 <div class="home">
     <div class="home_background_container prlx_parent">
-        
         <div class="home_background prlx" style="background-image:url({% static 'images/contact_background.jpg' %})"></div>
     </div>
     <div class="home_content">
-        <h1>انضم كمدرب</h1>
+        <h1>تواصل معنا</h1>
     </div>
 </div>
 
@@ -34,25 +30,32 @@
                 
                 <!-- Contact Form -->
                 <div class="contact_form">
-                    <div class="text-right contact_title">املأ المعلومات التالية</div>
+                    <div class="contact_title text-right">أرسل لنا رسالة</div>
 
                     <div class="contact_form_container">
                         <form method="post" dir="auto">
                             {% csrf_token %}
                             <input name="name" id="contact_form_name" class="text-right input_field contact_form_name" type="text" placeholder="اسمك" required="required" data-error="Name is required.">
                             <input name="phone" id="contact_form_email" class="text-right input_field contact_form_email" type="tel" placeholder="رقمك" required="required" pattern="^\+?\d{9,15}$" data-error="Valid phone number is required.">
-                            <textarea id="contact_form_message" class="text-right text_field contact_form_message" name="description" placeholder="نبذة تعريفية عنك" required="required" data-error="Please, write us a message."></textarea>
+                            <textarea id="contact_form_message" class="text-right text_field contact_form_message" name="msg" placeholder="رسالتك" required="required" data-error="Please, write us a message."></textarea>
                             <button id="contact_send_btn" type="submit" class="contact_send_btn trans_200" value="Submit">أرسال</button>
                         </form>
                     </div>
+                    {% bootstrap_messages %}  
                 </div>
-                {% bootstrap_messages %}  
+                    
             </div>
-            
+
             <div class="col-lg-4">
                 <div class="about">
                     <div class="text-right about_title">هل أنت مدرب؟</div>
-                    <p class="text-right about_text">اذا كنت تمتلك مهارات كافية لالقاء المحاضرات يمكنك الانضمام معنا, سيتم مراجعة معلوماتك وفي حال تم قبولك سيتم التواصل معك, يمكنك ايضا التواصل معنا عبر المعلومات التالية</p>
+                    <p class="text-right about_text">مرحبًا! <br>
+
+                        شكرًا لك على اهتمامك وتواصلك معنا. نحن نقدر رغبتك في التواصل وتقديم رسالتك لنا. نحن هنا للاستماع والاستجابة لاحتياجاتك واستفساراتك.
+                        
+                        يرجى كتابة رسالتك بشكل واضح وموجز. سواء كنت تود تقديم ملاحظات، طلبات، استفسارات، أو أي موضوع آخر، فنحن مستعدون للاستماع والمساعدة. سنبذل قصارى جهدنا للرد عليك في أقرب وقت ممكن.
+                        
+                        شكرًا مرة أخرى على التواصل، ونحن في انتظار رسالتك.</p>
 
                     <div class="contact_info">
                         <ul>
@@ -81,10 +84,20 @@
 
         </div>
 
+        <!-- Google Map -->
 
-        
+        <div class="row">
+            <div class="col">
+                <div id="google_map">
+                    <div class="map_container">
+                        <div id="map"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
 
     </div>
 </div>
+
 
 {% endblock %}
