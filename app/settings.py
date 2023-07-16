@@ -1,6 +1,6 @@
 import os
 
-IS_PRODUCTION = True
+IS_PRODUCTION = False
 
 if IS_PRODUCTION:
     from .conf.production.settings import *
