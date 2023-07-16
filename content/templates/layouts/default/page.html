@@ -89,17 +89,68 @@
 	<header class="header d-flex flex-row">
 		<div class="header_content d-flex flex-row align-items-center">
 			<!-- Logo -->
-			<div class="logo_container">
+			<div class="logo_container" style="
+			padding-left: 10px;
+		">
 				<div class="logo">
 					<img src="{% static 'images/logo.png' %}" alt="">
 					<span>كـورسـات</span>
 				</div>
 			</div>
+<style>
+	.box{
+    position: relative;
+}
 
+.input {
+    padding: 10px;
+    width: 34px;
+    height: 34px;
+    background: none;
+    border: 3px solid #eaf16c;
+    border-radius: 96px;
+    box-sizing: border-box;
+    font-size: 20px;
+    color: #000000;
+    outline: none;
+    transition: .5s;
+}
+.box:hover input{
+    width: 150px;
+	height: 40px;
+    background: #ffffff;
+    border-radius: 10px;
+}
+.box i{
+    position: absolute;
+    top: 50%;
+    right: -3px;
+    transform: translate(-50%,-50%);
+    font-size: 20px;
+    color: #ffd52d;
+    transition: .2s;
+}
+.box:hover i{
+    opacity: 0;
+    z-index: -1;
+}
+</style>
 			<!-- Main Navigation -->
-			<nav class="main_nav_container">
+			<nav class="main_nav_container" style="
+			padding-right: 10px;
+		">
 				<div class="main_nav">
 					<ul class="main_nav_list" >
+						<li  class="main_nav_item" >
+							<div class="box">
+								<form name="search">
+									<input type="text" class="input" name="txt" onmouseout="this.value = ''; this.blur();">
+								</form>
+								<i class="fas fa-search"></i>
+							
+							</div>
+						</li>
+						
 						<li  class="main_nav_item" ><a style="font-size: larger;" href="{% url 'index' %}">الرئيسة</a></li>
 
 						<li class="main_nav_item" ><a style="font-size: larger;" href="{% url 'cindex' %}">الكورسات</a></li>
@@ -107,7 +158,9 @@
                         <li class="main_nav_item" ><a style="font-size: larger;" href="{% url 'latest_news' %}">اخر الاحداث</a></li>
                         
                         <li class="main_nav_item">
-                          <div class="navbar">
+                          <div class="navbar" style="
+						  padding-right: 0px;
+					  ">
                             <div class="dropdown">
                             <button class="dropbtn" onclick="myFunction()" style="font-size: larger;">
                                 الحساب <i class="fas fa-bars trans_200"></i>
@@ -148,12 +201,91 @@
 			<span>+43 4566 7788 2457</span>
 		</div>
 
+<style>
+
+.search-container {
+	
+    position: absolute;
+    right: 15%;
+    top: 28%;
+    background: #fff;
+    height: 55%;
+    width: 45%;
+    border-radius: 30px;
+    padding: 1px 15px;
+    display: none;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    transition: 0.8s;
+    box-shadow: 4px 4px 6px 0 rgba(255,255,255,.3), -4px -4px 6px 0 rgba(116, 125, 136, .2), inset -4px -4px 6px 0 rgba(255,255,255,.2), inset 4px 4px 6px 0 rgba(0, 0, 0, .2);
+}
+.up_search_form{
+	height: 55%;
+    width: 45%;
+}
+.up_search_form:hover > .search-input{
+    width: -webkit-fill-available;
+    height: -webkit-fill-available;
+}
+
+.search-container .search-input {
+    direction: rtl;
+    background: transparent;
+    border: none;
+    outline: none;
+    width: 0px;
+    font-weight: 500;
+    font-size: small;
+    transition: 0.8s;
+}
+
+.search-container .search-btn .fas{
+    color: #5cbdbb;
+}
+
+@keyframes hoverShake {
+  0% {transform: skew(0deg,0deg);}
+  25% {transform: skew(5deg, 5deg);}
+  75% {transform: skew(-5deg, -5deg);}
+  100% {transform: skew(0deg,0deg);}
+}
+
+.search-container:hover{
+  animation: hoverShake 0.15s linear 3;
+}
+
+
+@media only screen and (max-width: 991px){
+				.search-container {
+			display: flex;
+		}
+	}
+
+</style>
+
+		<!-- search -->
+
+		<!-- <div class="search-container"> -->
+		
+				<form id="search_form" class="up_search_form search-container" method="post" action="">
+					{% csrf_token %}
+					<input type="text" name="search" placeholder="Search..." class="search-input">
+					<i class="fas fa-search"></i>
+				</form>
+			 	
+		<!-- </div> -->
+
+
+
+
 		<!-- Hamburger -->
 		<div class="hamburger_container">
 			<i class="fas fa-bars trans_200"></i>
 		</div>
 
 	</header>
+
 	
 	<!-- Menu -->
 	<div class="menu_container menu_mm">
@@ -167,6 +299,7 @@
 		<div class="menu_inner menu_mm">
 			<div class="menu menu_mm">
 				<ul class="menu_list menu_mm">
+					
 					<li class="menu_item menu_mm"><a href="{% url 'index' %}">الرئيسة</a></li>
 					<li class="menu_item menu_mm"><a href="{% url 'cindex' %}">الكورسات</a></li>
 					<li class="menu_item menu_mm"><a href="contact.html">تواصل معنا</a></li>
@@ -186,6 +319,7 @@
                             <a href="javascript:{}" onclick="document.getElementById('my_form').submit();">تسجيل الخروج</a>
                         </form>
                         {% else %}
+						<li class="menu_item menu_mm">
                         <li class="menu_item menu_mm"> <a  href="{% url 'accounts:log_in' %}" >تسجيل الدخول</a></li>
                         <li class="menu_item menu_mm"><a  href="{% url 'accounts:sign_up' %}" >انشاء حساب</a></li>
                         {% endif %}
