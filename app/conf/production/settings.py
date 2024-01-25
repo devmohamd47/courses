@@ -5,7 +5,7 @@ from django.utils.translation import gettext_lazy as _
 BASE_DIR = dirname(dirname(dirname(dirname(os.path.abspath(__file__)))))
 CONTENT_DIR = os.path.join(BASE_DIR, 'content')
 
-SECRET_KEY = '3d305kajG5Jy8KBafCMpHwDIsNi0SqVaW'
+SECRET_KEY = '3G5fCMpHJd305kajy8KBawDIsNi0SqVaW'
 
 DEBUG = False
 ALLOWED_HOSTS = ['*']
